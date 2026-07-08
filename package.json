@@ -1,0 +1,30 @@
+{
+  "name": "drewmark-converter",
+  "version": "1.0.0",
+  "description": "Convert between DrewMark, Markdown, and HTML — zero dependencies, Vanilla JS",
+  "main": "js/drewmark-converter.min.js",
+  "files": [
+    "js/drewmark-converter.min.js",
+    "css/drewmark-converter.min.css",
+    "lang/en.json",
+    "lang/zh-cn.json"
+  ],
+  "keywords": [
+    "drewmark",
+    "markdown",
+    "html",
+    "converter",
+    "vanilla",
+    "zero-dependencies"
+  ],
+  "author": "drewneon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drewneon/drewmark-js-converter.git"
+  },
+  "homepage": "https://github.com/drewneon/drewmark-js-converter",
+  "bugs": {
+    "url": "https://github.com/drewneon/drewmark-js-converter/issues"
+  }
+}

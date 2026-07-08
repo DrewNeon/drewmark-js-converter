@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrewMark JS Converter</title>
+  <link rel="stylesheet" href="../css/drewmark-converter.min.css">
+  <script src="../js/drewmark-converter.min.js"></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+        'Microsoft YaHei', sans-serif;
+      background: #f0f2f5;
+      color: #212529;
+    }
+
+    /* ── Header ── */
+    .app-header {
+      background: linear-gradient(135deg, #4361ee 0%, #7c3aed 100%);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(67,97,238,0.3);
+      z-index: 100;
+    }
+
+    .app-header .logo {
+      font-size: 1.25em;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-header .logo-badge {
+      font-size: 0.55em;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .app-header .header-desc {
+      font-size: 0.82em;
+      opacity: 0.85;
+    }
+
+    /* ── Main ── */
+    main.app-main {
+      padding: 12px 16px;
+    }
+
+    /* ── Sample Buttons (hidden by default, shown per source format) ── */
+    .sample-btn-row {
+      text-align: center;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .sample-btn-row.visible { display: block; }
+    .sample-btn-row button {
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sample-btn-row button:hover { background: #6d28d9; }
+
+    /* ── Footer ── */
+    .app-footer {
+      text-align: center;
+      padding: 8px 20px;
+      font-size: 12px;
+      color: #adb5bd;
+      background: #fff;
+      border-top: 1px solid #dee2e6;
+    }
+    .app-footer a { color: #4361ee; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="app-header">
+  <div class="logo">
+    <img src="../images/logo-s.png" width="32"> DrewMark
+    <span class="logo-badge">v1.6</span>
+  </div>
+  <span class="header-desc">Format Converter</span>
+</header>
+
+<!-- Main Converter -->
+<main class="app-main">
+  <!-- Sample button row (dynamic, hidden by default) -->
+  <div id="dmc-sample-btns" class="sample-btn-row"></div>
+
+  <div id="converter"></div>
+</main>
+
+<!-- Footer -->
+<footer class="app-footer">
+  DrewMark Converter v1.6 &nbsp;&middot;&nbsp; Copyright (c) 2026 DREW Neon
+</footer>
+
+<script type="module">
+  await drewmarkConverterLang({ lang_path: '../lang' });
+  drewmarkConverter({ converter_id: 'converter' });
+
+  // ── Sample data ──
+  var SAMPLES = {
+    drewmark: "# Welcome to DrewMark\n\nDrewMark is a **lightweight** markup language with %%rich%% formatting.\n\n## Text Decorations\n\n+ **Bold**, %%italic%%, __underline__\n+ !!highlight!!, ~~strikethrough~~, @@small@@\n+ ^^superscript^^, <<subscript>>\n+ `Inline code` and ruby: {{hello^helo}}\n\n## Lists & Definitions\n\n+*+ Completed task\n+-*- Pending task\n\n1. Ordered item one\n2. Ordered item two\n\n;;Term::Definition here;;\n;;Abbrev::Full meaning;;\n\n## Code & Tables\n\n```\nfunction greet() { return \"Hi\"; }\n```\n\n| Feature | Status |\n|====|====|\n| Parser | Ready |\n| Converter | Ready |\n\n## Blocks\n\n> A blockquote with **emphasis**.\n\n;;; Click to expand\nDetails content here.\n;;;\n\n---\n\nLink: (DrewMark){https://example.com}\nProgress: ((75/100))\n\n!!!\n! Figure Title\n!(alt text){https://example.com/img.png}\n!!!",
+    markdown: "# Welcome to Markdown\n\nMarkdown is a **lightweight** markup language with *rich* formatting.\n\n## Text Decorations\n\n- **Bold** and *italic* text\n- ~~Strikethrough~~ support\n- `Inline code` example\n\n## Lists\n\n- Unordered item\n- Another item\n\n1. Ordered item one\n2. Ordered item two\n\n## Code & Tables\n\n```\nfunction greet() { return \"Hi\"; }\n```\n\n| Feature | Status |\n|---|---|\n| Parser | Ready |\n| Converter | Ready |\n\n## Other Elements\n\n> A blockquote with **emphasis**.\n\n---\n\nLink: [Markdown](https://example.com)",
+    html: "<h1>Welcome to HTML</h1>\n<p>HTML is the <strong>foundation</strong> of the web, with <em>emphasis</em>, <u>underline</u>, <mark>highlight</mark>, <del>strikethrough</del>, <sup>superscript</sup>, <sub>subscript</sub>, and <small>small text</small>.</p>\n<h2>Lists &amp; Definitions</h2>\n<ul>\n  <li>Unordered item</li>\n  <li>Another item</li>\n</ul>\n<ol>\n  <li>First ordered item</li>\n  <li>Second ordered item</li>\n</ol>\n<dl>\n  <dt>Term</dt>\n  <dd>Definition here</dd>\n</dl>\n<h2>Code &amp; Tables</h2>\n<pre><code>function greet() { return \"Hi\"; }</code></pre>\n<p>Inline <code>code</code> example and <a href=\"https://example.com\">a link</a>.</p>\n<table>\n  <thead><tr><th>Feature</th><th>Status</th></tr></thead>\n  <tbody>\n    <tr><td>Parser</td><td>Ready</td></tr>\n    <tr><td>Converter</td><td>Ready</td></tr>\n  </tbody>\n</table>\n<h2>Other Elements</h2>\n<blockquote><p>A blockquote with <strong>emphasis</strong>.</p></blockquote>\n<details>\n  <summary>Click to expand</summary>\n  <p>Details content here.</p>\n</details>\n<hr>\n<figure>\n  <figcaption>Figure Title</figcaption>\n  <img src=\"https://example.com/img.png\" alt=\"alt text\">\n</figure>"
+  }
+
+  var LABELS = {
+    drewmark: 'Load DrewMark Sample',
+    markdown: 'Load Markdown Sample',
+    html: 'Load HTML Sample'
+  }
+
+  var btnRow = document.getElementById('dmc-sample-btns')
+
+  // Listen for source format changes to dynamically show the right button
+  window.addEventListener('dmc-src-format-change', function(e) {
+    var fmt = e.detail.value
+    btnRow.innerHTML = ''
+    if (fmt && SAMPLES[fmt]) {
+      var btn = document.createElement('button')
+      btn.textContent = LABELS[fmt]
+      btn.addEventListener('click', function() {
+        var area = document.querySelector('#dmc-source-area')
+        if (!area) return
+        area.value = SAMPLES[fmt]
+      })
+      btnRow.appendChild(btn)
+      btnRow.classList.add('visible')
+    } else {
+      btnRow.classList.remove('visible')
+    }
+  })
+
+  // ── Headless mode test ──
+  // var test1 = drewmarkConverter({source_format: 'markdown', target_format: 'drewmark', source_text: '![alt](url)'});
+  // var test2 = drewmarkConverter({source_format: 'md', target_format: 'dm', source_text: '![alt](url)'});
+  // var test3 = drewmarkConverter({sf: 'markdown', tf: 'drewmark', st: '![alt](url)'});
+  // var test4 = drewmarkConverter({sf: 'md', tf: 'dm', st: '![alt](url)'});
+
+  // console.log(test1+'\n\n'+test2+'\n\n'+test3+'\n\n'+test4+'\n\n');
+
+</script>
+</body>
+</html>

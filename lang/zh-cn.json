@@ -1,0 +1,18 @@
+{
+  "sourceFormat": "选择源格式…",
+  "targetFormat": "选择目标格式…",
+  "convertBtn": "转换",
+  "copyBtn": "复制",
+  "downloadBtn": "下载",
+  "uploadBtn": "上传文件",
+  "placeholder": "请输入或粘贴文本…",
+  "resultPh": "转换结果将显示在这里…",
+  "fmtDrewmark": "朱码 (.dm)",
+  "fmtMarkdown": "Markdown (.md)",
+  "fmtHtml": "HTML (.html)",
+  "noHtmlTarget": "朱砀 → HTML 和 Markdown → HTML 在这里不支持。请使用相应的 JS Parser。",
+  "emptySource": "源文本为空。",
+  "sameFormat": "源格式和目标格式相同。",
+  "errTitle": "转换错误",
+  "loadSampleBtn": "载入示例"
+}

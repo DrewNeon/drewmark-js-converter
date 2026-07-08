@@ -1,0 +1,18 @@
+{
+  "sourceFormat": "Select source format…",
+  "targetFormat": "Select target format…",
+  "convertBtn": "Convert",
+  "copyBtn": "Copy",
+  "downloadBtn": "Download",
+  "uploadBtn": "Upload File",
+  "placeholder": "Enter or paste your text here…",
+  "resultPh": "Converted result will appear here…",
+  "fmtDrewmark": "DrewMark (.dm)",
+  "fmtMarkdown": "Markdown (.md)",
+  "fmtHtml": "HTML (.html)",
+  "noHtmlTarget": "DrewMark → HTML and Markdown → HTML are not supported here. Please use the corresponding JS Parser.",
+  "emptySource": "Source text is empty.",
+  "sameFormat": "Source and target formats are the same.",
+  "errTitle": "Conversion Error",
+  "loadSampleBtn": "Load Sample"
+}

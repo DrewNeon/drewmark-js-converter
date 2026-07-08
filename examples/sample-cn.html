@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>朱码 JS 转换器</title>
+  <link rel="stylesheet" href="../css/drewmark-converter.min.css">
+  <script src="../js/drewmark-converter.min.js"></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+        'Microsoft YaHei', sans-serif;
+      background: #f0f2f5;
+      color: #212529;
+    }
+
+    /* ── Header ── */
+    .app-header {
+      background: linear-gradient(135deg, #4361ee 0%, #7c3aed 100%);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(67,97,238,0.3);
+      z-index: 100;
+    }
+
+    .app-header .logo {
+      font-size: 1.25em;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-header .logo-badge {
+      font-size: 0.55em;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .app-header .header-desc {
+      font-size: 0.82em;
+      opacity: 0.85;
+    }
+
+    /* ── Main ── */
+    main.app-main {
+      padding: 12px 16px;
+    }
+
+    /* ── Sample Buttons (hidden by default, shown per source format) ── */
+    .sample-btn-row {
+      text-align: center;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .sample-btn-row.visible { display: block; }
+    .sample-btn-row button {
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sample-btn-row button:hover { background: #6d28d9; }
+
+    /* ── Footer ── */
+    .app-footer {
+      text-align: center;
+      padding: 8px 20px;
+      font-size: 12px;
+      color: #adb5bd;
+      background: #fff;
+      border-top: 1px solid #dee2e6;
+    }
+    .app-footer a { color: #4361ee; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="app-header">
+  <div class="logo">
+    <img src="../images/logo-s.png" width="32"> 朱码
+    <span class="logo-badge">v1.6</span>
+  </div>
+  <span class="header-desc">格式转换器</span>
+</header>
+
+<!-- Main Converter -->
+<main class="app-main">
+  <!-- Sample button row (dynamic, hidden by default) -->
+  <div id="dmc-sample-btns" class="sample-btn-row"></div>
+
+  <div id="converter"></div>
+</main>
+
+<!-- Footer -->
+<footer class="app-footer">
+  DrewMark Converter v1.6 &nbsp;&middot;&nbsp; Copyright (c) 2026 DREW Neon
+</footer>
+
+<script type="module">
+  await drewmarkConverterLang({ lang_path: '../lang' });
+  drewmarkConverter({ cid: 'converter' });
+
+  // ── 示例原文 ──
+  var SAMPLES = {
+    drewmark: "# 欢迎使用朱码\n\n朱码是一种**轻量级**标记语言，具有%%丰富的%%格式支持。\n\n## 文本装饰\n\n+ **粗体**、%%斜体%%、__下划线__\n+ !!高亮!!、~~删除线~~、@@小字@@\n+ ^^上标^^、<<下标>>\n+ `行内代码` 和注音：{{你好^ni hao}}\n\n## 列表与定义\n\n+*+ 已完成任务\n+-*- 待办任务\n\n1. 有序项一\n2. 有序项二\n\n;;术语::定义内容;;\n;;缩写::完整含义;;\n\n## 代码与表格\n\n```\nfunction greet() { return \"Hi\"; }\n```\n\n| 功能 | 状态 |\n|====|====|\n| 解析器 | 就绪 |\n| 转换器 | 就绪 |\n\n## 块级元素\n\n> 带有**强调**的引用块。\n\n;;; 点击展开\n详情内容在此。\n;;;\n\n---\n\n链接：(朱码官网){https://example.com}\n进度：((75/100))\n\n!!!\n! 图片标题\n!(示例图片){https://example.com/img.png}\n!!!",
+    markdown: "# 欢迎使用 Markdown\n\nMarkdown 是一种**轻量级**标记语言，具有*丰富的*格式支持。\n\n## 文本装饰\n\n- **粗体** 和 *斜体* 文本\n- ~~删除线~~ 支持\n- `行内代码` 示例\n\n## 列表\n\n- 无序项\n- 另一项\n\n1. 有序项一\n2. 有序项二\n\n## 代码与表格\n\n```\nfunction greet() { return \"Hi\"; }\n```\n\n| 功能 | 状态 |\n|---|---|\n| 解析器 | 就绪 |\n| 转换器 | 就绪 |\n\n## 其他元素\n\n> 带有**强调**的引用块。\n\n---\n\n链接：[Markdown](https://example.com)",
+    html: "<h1>欢迎使用 HTML</h1>\n<p>HTML 是网页的<strong>基础</strong>，支持<em>强调</em>、<u>下划线</u>、<mark>高亮</mark>、<del>删除线</del>、<sup>上标</sup>、<sub>下标</sub>和<small>小字</small>。</p>\n<h2>列表与定义</h2>\n<ul>\n  <li>无序项</li>\n  <li>另一项</li>\n</ul>\n<ol>\n  <li>有序项一</li>\n  <li>有序项二</li>\n</ol>\n<dl>\n  <dt>术语</dt>\n  <dd>定义内容</dd>\n</dl>\n<h2>代码与表格</h2>\n<pre><code>function greet() { return \"Hi\"; }</code></pre>\n<p>行内<code>代码</code>示例和<a href=\"https://example.com\">链接</a>。</p>\n<table>\n  <thead><tr><th>功能</th><th>状态</th></tr></thead>\n  <tbody>\n    <tr><td>解析器</td><td>就绪</td></tr>\n    <tr><td>转换器</td><td>就绪</td></tr>\n  </tbody>\n</table>\n<h2>其他元素</h2>\n<blockquote><p>带有<strong>强调</strong>的引用块。</p></blockquote>\n<details>\n  <summary>点击展开</summary>\n  <p>详情内容在此。</p>\n</details>\n<hr>\n<figure>\n  <figcaption>图片标题</figcaption>\n  <img src=\"https://example.com/img.png\" alt=\"示例图片\">\n</figure>"
+  }
+
+  var LABELS = {
+    drewmark: '加载朱码示例',
+    markdown: '加载 Markdown 示例',
+    html: '加载 HTML 示例'
+  }
+
+  var btnRow = document.getElementById('dmc-sample-btns')
+
+  // 监听原文格式下拉列表变更，自动显示相应的按钮
+  window.addEventListener('dmc-src-format-change', function(e) {
+    var fmt = e.detail.value
+    btnRow.innerHTML = ''
+    if (fmt && SAMPLES[fmt]) {
+      var btn = document.createElement('button')
+      btn.textContent = LABELS[fmt]
+      btn.addEventListener('click', function() {
+        var area = document.querySelector('#dmc-source-area')
+        if (!area) return
+        area.value = SAMPLES[fmt]
+      })
+      btnRow.appendChild(btn)
+      btnRow.classList.add('visible')
+    } else {
+      btnRow.classList.remove('visible')
+    }
+  })
+
+  // ── 无 UI 模式代码演示 ──
+  // var test1 = drewmarkConverter({source_format: 'markdown', target_format: 'drewmark', source_text: '![alt](url)'});
+  // var test2 = drewmarkConverter({source_format: 'md', target_format: 'dm', source_text: '![alt](url)'});
+  // var test3 = drewmarkConverter({sf: 'markdown', tf: 'drewmark', st: '![alt](url)'});
+  // var test4 = drewmarkConverter({sf: 'md', tf: 'dm', st: '![alt](url)'});
+
+  // console.log(test1+'\n\n'+test2+'\n\n'+test3+'\n\n'+test4+'\n\n');
+
+</script>
+</body>
+</html>
