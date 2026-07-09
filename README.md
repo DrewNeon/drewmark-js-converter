@@ -57,9 +57,9 @@ See [`docs/doc.md`](docs/doc.md) for the full API reference.
 
 ## Related Projects
 
-[DrewMark](../../../../drewneon/drewmark) (syntax specification)
-[DrewMark JS Parser](../../../../drewneon/drewmark-js-parser)
-[DrewMark JS Editor](../../../../drewneon/drewmark-js-editor) (WYSIWYG editor)
+* [DrewMark](../../../../drewneon/drewmark) (syntax specification)
+* [DrewMark JS Parser](../../../../drewneon/drewmark-js-parser)
+* [DrewMark JS Editor](../../../../drewneon/drewmark-js-editor) (WYSIWYG editor)
 
 ---
 

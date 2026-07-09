@@ -55,9 +55,9 @@ English docs: [docs/doc.md](docs/doc.md)
 
 ## 相关项目
 
-[朱码](../../../../drewneon/drewmark)（语法规范）
-[朱码 JS 解析器](../../../../drewneon/drewmark-js-parser)
-[朱码 JS 编辑器](../../../../drewneon/drewmark-js-editor)（所见即所得编辑器）
+* [朱码](../../../../drewneon/drewmark)（语法规范）
+* [朱码 JS 解析器](../../../../drewneon/drewmark-js-parser)
+* [朱码 JS 编辑器](../../../../drewneon/drewmark-js-editor)（所见即所得编辑器）
 
 ---
 
