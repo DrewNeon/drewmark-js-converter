@@ -18,9 +18,9 @@
 
 ## 1. Project Introduction
 
-[DrewMark](https://github.com/drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
+[DrewMark](/drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
 
-To facilitate a quick transition for users accustomed to Markdown, as well as to assist those who have not yet adopted any markup language,  *DrewMark JS Converter* is provided. Developed with Vanilla JavaScript, the Converter is capable of various conversion among [DrewMark](https://github.com/drewneon/drewmark), [Markdown](https://daringfireball.net/projects/markdown/), and HTML.
+To facilitate a quick transition for users accustomed to Markdown, as well as to assist those who have not yet adopted any markup language,  *DrewMark JS Converter* is provided. Developed with Vanilla JavaScript, the Converter is capable of various conversion among [DrewMark](/drewneon/drewmark), [Markdown](https://daringfireball.net/projects/markdown/), and HTML.
 
 Supported Conversion Directions:
 

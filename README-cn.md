@@ -23,7 +23,7 @@
 | HTML     | DrewMark |
 | HTML     | Markdown |
 
-* 不支持 **DrewMark → HTML** 转换，请使用 [DrewMark JS 解析器](https://github.com/drewneon/drewmark-js-parser/)。
+* 不支持 **DrewMark → HTML** 转换，请使用 [DrewMark JS 解析器](/drewneon/drewmark-js-parser/)。
 * 不支持 **Markdown → HTML** 转换，请使用专门的 Markdown 解析器。
 
 ## 快速入门
@@ -55,9 +55,9 @@ English docs: [docs/doc.md](docs/doc.md)
 
 ## 相关项目
 
-[朱码](https://github.com/drewneon/drewmark)（语法规范）
-[朱码 JS 解析器](https://github.com/drewneon/drewmark-js-parser)
-[朱码 JS 编辑器](https://github.com/drewneon/drewmark-js-editor)（所见即所得编辑器）
+[朱码](/drewneon/drewmark)（语法规范）
+[朱码 JS 解析器](/drewneon/drewmark-js-parser)
+[朱码 JS 编辑器](/drewneon/drewmark-js-editor)（所见即所得编辑器）
 
 ---
 

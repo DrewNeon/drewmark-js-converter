@@ -18,9 +18,9 @@
 
 ## 1. 项目介绍
 
-[朱码](https://github.com/drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
+[朱码](/drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
 
-为了方便习惯使用 Markdown 的用户快速切换至*朱码*，也方便仍未开始使用任何标记语言的用户，特提供基于原生 JavaScript（Vanilla JS）开发的*朱码 JS 转换器*，支持*[朱码](https://github.com/drewneon/drewmark)*、[Markdown](https://daringfireball.net/projects/markdown/) 和 HTML 三种格式之间的多种相互转换。
+为了方便习惯使用 Markdown 的用户快速切换至*朱码*，也方便仍未开始使用任何标记语言的用户，特提供基于原生 JavaScript（Vanilla JS）开发的*朱码 JS 转换器*，支持*[朱码](/drewneon/drewmark)*、[Markdown](https://daringfireball.net/projects/markdown/) 和 HTML 三种格式之间的多种相互转换。
 
 支持的转换方向：
 
