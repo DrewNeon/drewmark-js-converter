@@ -18,9 +18,9 @@
 
 ## 1. Project Introduction
 
-[DrewMark](../../../../../drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
+[DrewMark](https://github.com/drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
 
-To facilitate a quick transition for users accustomed to Markdown, as well as to assist those who have not yet adopted any markup language,  *DrewMark JS Converter* is provided. Developed with Vanilla JavaScript, the Converter is capable of various conversion among [DrewMark](../../../../../drewneon/drewmark), [Markdown](https://daringfireball.net/projects/markdown/), and HTML.
+To facilitate a quick transition for users accustomed to Markdown, as well as to assist those who have not yet adopted any markup language,  *DrewMark JS Converter* is provided. Developed with Vanilla JavaScript, the Converter is capable of various conversion among [DrewMark](https://github.com/drewneon/drewmark), [Markdown](https://daringfireball.net/projects/markdown/), and HTML.
 
 Supported Conversion Directions:
 
@@ -65,27 +65,33 @@ drewmark-js-converter/
 
 ## 3. Headless Mode
 
+More suitable for Bundled Projects (Node.js + Build Tools), i.e. projects using build tools such as Webpack, Vite, or Rollup.
+
 ### 3.1 Usage
 
-1. Include the converter script file.
-2. Call the `drewmarkConverter({params})` function.
-3. Obtain the converted string result.
+**1. Install Dependencies**
 
-```html
-<script src="js/drewmark-converter.min.js"></script> <!-- Include DrewMark JS Converter -->
-<script>
-  var result = drewmarkConverter({
-    source_text:   '# Welcome\n\nThis is **DrewMark** format.\n\n+ List item %%italic%%',
+```bash
+npm install drewmark-converter
+```
+
+**2. Import and Use in Source Code**
+
+Import the Converter and its stylesheet in your entry file or component, then call the initialization function:
+
+```javascript
+// Import the Converter
+import { drewmarkConverter } from 'drewmark-converter';
+
+const content = '# Heading\nThis is a **DrewMark** text.';
+const result = drewmarkConverter({
+    source_text:   content,
     source_format: 'drewmark',
     target_format: 'markdown',
-  });
-  console.log(result);
-  // # Welcome
-  //
-  // This is **DrewMark** format.
-  //
-  // + List item *italic*
-</script>
+  }); // the actuall value is '# Heading<br>This is a **DrewMark** text.'
+
+// Render the result to the page or process it further
+document.getElementById('output').innerHTML = html;
 
 ```
 
@@ -109,38 +115,50 @@ drewmarkConverter({sf: 'md', tf: 'dm', st: '# test'});
 
 ```
 
-* Special Case: If the source format is DrewMark or Markdown and the target format is HTML, the converter will not return parsed HTML. Instead, it will return a message prompting you to use the corresponding JS parser.
+* Special Case: If the source format is DrewMark or Markdown and the target format is HTML, the Converter will not return parsed HTML. Instead, it will return a message prompting you to use the corresponding JS parser.
 
 ---
 
 ## 4. UI Mode
 
+More suitable for plain HTML pages without a Node.js environment. When loaded via a `<script>` tag, the Converter will be mounted as a global variable.
+
 ### 4.1 Usage
 
-1. Include the converter's stylesheet file in the `<head>`.
-2. Include the converter script file.
-3. Determine the `id` attribute value of the container element where the converter will be loaded.
-4. Use the `drewmarkConverter({converter_id: 'target-id'})` function to load the converter UI.
+**1. Download Library**
 
+Download `js/drewmark-converter.min.js` and `css/drewmark-converter.min.css` from this repository into your project directory. You may skip this step if referencing directly via CDN.
+
+**2. Include Scripts**
+
+Choose one of the following two methods:
+
++ Reference the locally downloaded scripts:
 ```html
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/drewmark-converter.min.css"> <!-- Include converter stylesheet -->
+  <link rel="stylesheet" href="path/to/drewmark-converter.min.css">
 </head>
-<body>
-  <div id="my-converter"></div>  <!-- Container element for loading the converter -->
-  <script src="js/drewmark-converter.min.js"></script> <!-- Include DrewMark JS Converter -->
-  <script>
-    drewmarkConverter({ converter_id: 'my-converter' }); // Load the converter into the container with id="my-converter"
-  </script>
-</body>
-</html>
-
+<script src="path/to/drewmark-converter.min.js"></script>
 ```
 
-+ The `converter_id` parameter can be abbreviated as `cid`. For example, the statement to load the converter UI in the above example can also be written as: `drewmarkConverter({ cid: 'my-converter' });`.
++ Reference scripts directly from CDN (skips the download step):
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/drewmark-converter@latest/css/drewmark-converter.min.css">
+</head>
+<script src="https://unpkg.com/drewmark-converter@latest/js/drewmark-converter.min.js"></script>
+```
+
+**3. Load the Converter in the Specified Container Element**
+
+```html
+  <div id="my-converter"></div>
+  <script>
+    drewmarkConverter({ converter_id: 'my-converter' });
+  </script>
+```
+
++ The `converter_id` parameter can be abbreviated as `cid`. For example, the statement to load the Converter UI in the above example can also be written as: `drewmarkConverter({ cid: 'my-converter' });`.
 + *UI Mode* also supports the three parameters detailed in *Headless Mode* section, and their values are used as the initial values when the Converter's UI is loaded.
 
 ### 4.2 Interface Showcase
@@ -193,7 +211,7 @@ drewmarkConverterLang({opts}).then(function () {
 
 #### 4.4.1 Custom Language File Path
 
-**Parameter Name**: `lang_path`
+**Parameter Name**: `lang_path` (or abbreviated as `lp`)
 **Type**: string
 **Default Value**: `./lang`
 **Accepted Values**: absolute path or relative path
@@ -206,11 +224,11 @@ drewmarkConverterLang({./lang_path}).then(function () { // use relative path
   drewmarkConverter({params});
 });
 ```
-**Description**: By default, DrewMark JS Converter looks for language files in the `lang` directory sibling to its own location. Use this parameter to specify a custom directory for language files.
+**Description**: By default, DrewMark JS Converter looks for language files in the `lang` directory sibling to its own location, and HTML files are normally resided in the upper directory, hence the language files are found by keeping this parameter to its default value. However, if the directory structure is different from this, please use this parameter to specify a custom directory for the language files. **If `drewmark-js-editor.min.js` is included via CDN, `lang_path` must be set to `https://unpkg.com/drewmark-editor@latest/lang`!**
 
 #### 4.4.2 Custom Fallback Language
 
-**Parameter Name**: `fallback_lang`
+**Parameter Name**: `fallback_lang` (or abbreviated as `fl`)
 **Type**: string
 **Default Value**: `en`
 **Usage**:
@@ -287,4 +305,4 @@ This is achieved in two steps: HTML → DrewMark, then DrewMark → Markdown.
 
 ---
 
-*Version: v1.6*
+*Version: v1.1.6*

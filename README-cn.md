@@ -23,29 +23,80 @@
 | HTML     | DrewMark |
 | HTML     | Markdown |
 
-* 不支持 **DrewMark → HTML** 转换，请使用 [DrewMark JS 解析器](../../../../drewneon/drewmark-js-parser/)。
+* 不支持 **DrewMark → HTML** 转换，请使用 [DrewMark JS 解析器](https://gitee.com/drewneon/drewmark-js-parser/)。
 * 不支持 **Markdown → HTML** 转换，请使用专门的 Markdown 解析器。
 
-## 快速入门
+## 快速开始
 
-```html
-<link rel="stylesheet" href="css/drewmark-converter.min.css">
-<div id="my-converter"></div>
-<script src="js/drewmark-converter.min.js"></script>
-<script>
-  drewmarkConverter({ converter_id: 'my-converter' });
-</script>
+### 方式一：工程化项目（Node.js + 构建工具）
+
+适用于使用 Webpack、Vite、Rollup 等构建工具的项目。
+
+**1. 安装依赖**
+
+```bash
+npm install drewmark-converter
 ```
 
-## 无界面模式
+**2. 在源码中导入并使用**
+
+在入口文件或组件中导入转换器及样式文件，并调用初始化函数：
 
 ```javascript
-var result = drewmarkConverter({
-  source_text:   '# 欢迎 **朱码**',
-  source_format: 'markdown',
-  target_format: 'drewmark',
-});
+// 导入转换器
+import { drewmarkConverter } from 'drewmark-converter';
+
+const content = '# 标题\n这是一段**朱码**文本。';
+const result = drewmarkConverter({
+    source_text:   content,
+    source_format: 'drewmark',
+    target_format: 'markdown',
+  }); // 实际值为：'# 标题<br>这是一段**朱码**文本。'
+
+// 将结果渲染到页面或进行后续处理
+document.getElementById('output').innerHTML = html;
 ```
+
+---
+
+### 方式二：浏览器直接调用（无构建工具）
+
+适用于纯 HTML 页面，无需 Node.js 环境，通过 `<script>` 标签加载后，转换器会以全局变量的形式挂载。
+
+**1. 下载依赖**
+
+从本仓库下载 `js/drewmark-converter.min.js`、`css/drewmark-converter.min.css` 和 `lang/zh-cn.json` 至项目目录，如通过 CDN 直接引用则可跳过此步骤。
+
+**2. 引用脚本**
+
+两种方法二选一：
+
++ 引用下载到本地的脚本：
+```html
+<head>
+  <link rel="stylesheet" href="path/to/drewmark-converter.min.css">
+</head>
+<script src="path/to/drewmark-converter.min.js"></script>
+```
+
++ 从 CDN 直接引用脚本（跳过下载步骤）：
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/drewmark-converter@latest/css/drewmark-converter.min.css">
+</head>
+<script src="https://unpkg.com/drewmark-converter@latest/js/drewmark-converter.min.js"></script>
+```
+
+**3. 在指定容器元素中加载转换器**
+
+```html
+  <div id="my-converter"></div>
+  <script>
+    drewmarkConverter({ converter_id: 'my-converter' });
+  </script>
+```
+
+---
 
 ## 文档
 
@@ -55,9 +106,9 @@ English docs: [docs/doc.md](docs/doc.md)
 
 ## 相关项目
 
-* [朱码](../../../../drewneon/drewmark)（语法规范）
-* [朱码 JS 解析器](../../../../drewneon/drewmark-js-parser)
-* [朱码 JS 编辑器](../../../../drewneon/drewmark-js-editor)（所见即所得编辑器）
+* [朱码](https://gitee.com/drewneon/drewmark)（语法规范）
+* [朱码 JS 解析器](https://gitee.com/drewneon/drewmark-js-parser)
+* [朱码 JS 编辑器](https://gitee.com/drewneon/drewmark-js-editor)（所见即所得编辑器）
 
 ---
 

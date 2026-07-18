@@ -29,25 +29,76 @@ A lightweight, zero-dependency JavaScript library that converts content between
 
 ## Quick Start
 
-```html
-<link rel="stylesheet" href="css/drewmark-converter.min.css">
-<div id="my-converter"></div>
-<script src="js/drewmark-converter.min.js"></script>
-<script>
-  drewmarkConverter({ converter_id: 'my-converter' });
-</script>
+### Option 1: Bundled Projects (Node.js + Build Tools)
+
+For projects using build tools such as Webpack, Vite, or Rollup.
+
+**1. Install Dependencies**
+
+```bash
+npm install drewmark-converter
 ```
 
-## Headless Usage
+**2. Import and Use in Source Code**
+
+Import the Converter and its stylesheet in your entry file or component, then call the initialization function:
 
 ```javascript
-var result = drewmarkConverter({
-  source_text:   '# Hello **World**',
-  source_format: 'markdown',
-  target_format: 'drewmark',
-});
-// result: '# Hello **World**'
+// Import the Converter
+import { drewmarkConverter } from 'drewmark-converter';
+
+const content = '# Heading\nThis is a **DrewMark** text.';
+const result = drewmarkConverter({
+    source_text:   content,
+    source_format: 'drewmark',
+    target_format: 'markdown',
+  }); // the actuall value is '# Heading<br>This is a **DrewMark** text.'
+
+// Render the result to the page or process it further
+document.getElementById('output').innerHTML = html;
+
 ```
+
+---
+
+### Option 2: Direct Browser Usage (No Build Tools)
+
+For plain HTML pages without a Node.js environment. When loaded via a `<script>` tag, the Converter will be mounted as a global variable.
+
+**1. Download Library**
+
+Download `js/drewmark-converter.min.js` and `css/drewmark-converter.min.css` from this repository into your project directory. You may skip this step if referencing directly via CDN.
+
+**2. Include Scripts**
+
+Choose one of the following two methods:
+
++ Reference the locally downloaded scripts:
+```html
+<head>
+  <link rel="stylesheet" href="path/to/drewmark-converter.min.css">
+</head>
+<script src="path/to/drewmark-converter.min.js"></script>
+```
+
++ Reference scripts directly from CDN (skips the download step):
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/drewmark-converter@latest/css/drewmark-converter.min.css">
+</head>
+<script src="https://unpkg.com/drewmark-converter@latest/js/drewmark-converter.min.js"></script>
+```
+
+**3. Load the Converter in the Specified Container Element**
+
+```html
+  <div id="my-converter"></div>
+  <script>
+    drewmarkConverter({ converter_id: 'my-converter' });
+  </script>
+```
+
+---
 
 ## Documentation
 

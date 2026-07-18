@@ -1,6 +1,6 @@
 {
   "name": "drewmark-converter",
-  "version": "1.0.0",
+  "version": "1.1.6",
   "description": "Convert between DrewMark, Markdown, and HTML — zero dependencies, Vanilla JS",
   "main": "js/drewmark-converter.min.js",
   "files": [
